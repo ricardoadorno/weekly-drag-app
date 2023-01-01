@@ -5,9 +5,11 @@ import WeekTable from "./components/WeekTable";
 import Sidebar from "./components/Sidebar";
 import { DragDropContext } from "@hello-pangea/dnd";
 
-import { Content, Navbar, Page } from "./components/styles/layout";
+import styled from "@emotion/styled";
 
 // TODO redux it & type's
+// TODO export pdf
+// TODO create responsiviness
 
 function App() {
   const daysOfTheWeek = [
@@ -102,3 +104,32 @@ function App() {
 }
 
 export default App;
+
+const Page = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background-color: #f5f5f5;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+`;
+
+const Navbar = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 50px;
+  background-color: darkgray;
+  border-bottom: 1px solid #e5e5e5;
+`;
+
+const Content = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  gap: 3rem;
+  padding: 2rem;
+`;

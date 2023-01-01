@@ -1,7 +1,5 @@
 import { Droppable } from "@hello-pangea/dnd";
-import { TableBox, TableTitle } from "./styles/components";
-
-import { Table } from "./styles/layout";
+import styled from "@emotion/styled";
 
 export default function WeekTable({ daySlots, setDaySlots }) {
   const daysOfTheWeek = [
@@ -113,3 +111,63 @@ export default function WeekTable({ daySlots, setDaySlots }) {
     </div>
   );
 }
+
+// * TABLE STYLES
+
+const Table = styled.table`
+  background: lightgray;
+  table-layout: fixed;
+  width: 100%;
+  box-shadow: 0 0 4px 2px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  border-top: 0 none;
+  padding: 1rem;
+
+  thead {
+    background: #ff7361;
+    text-align: center;
+
+    th: {
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.6);
+    }
+
+    th:first-of-type {
+      background-color: lightgray;
+      border: 1px solid black;
+      font-weight: normal;
+    }
+  }
+
+  tbody {
+    tr {
+      cursor: pointer;
+    }
+
+    tr > td:first-of-type {
+      border-bottom: 1px solid black;
+      cursor: text;
+      &:hover {
+        background-color: #ff7361;
+      }
+    }
+
+    tr:last-child > td:first-child {
+      border-bottom: 0 none;
+    }
+
+    td {
+      padding: 0.2rem;
+    }
+  }
+`;
+
+const TableTitle = styled.h2`
+  color: black;
+  font-weight: bold;
+`;
+
+const TableBox = styled.div`
+  border: 1px solid black;
+  text-align: center;
+  padding: 0 0.5rem;
+`;
