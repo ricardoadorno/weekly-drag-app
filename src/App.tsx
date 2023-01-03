@@ -8,8 +8,15 @@ import { DragDropContext } from "@hello-pangea/dnd";
 import styled from "@emotion/styled";
 
 // TODO redux it & type's
-// TODO export pdf
 // TODO create responsiviness
+// TODO fix max lenght bug
+// TODO handle exeptins like empty task
+// TODO fix auto sizing
+
+// TODO Make store the data in the local storage
+// TODO export pdf
+// TODO make the table customizable
+// TODO make possible to add new work types
 
 function App() {
   const daysOfTheWeek = [
@@ -112,7 +119,6 @@ const Page = styled.div`
   justify-content: center;
   width: 100%;
   height: 100%;
-  background-color: #f5f5f5;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 `;
 
@@ -123,13 +129,18 @@ const Navbar = styled.div`
   justify-content: center;
   width: 100%;
   height: 50px;
-  background-color: darkgray;
-  border-bottom: 1px solid #e5e5e5;
+  background-color: #f59e0b;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.8);
+
+  color: #1e293b;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #f3f4f6;
 `;
 
 const Content = styled.div`
   display: grid;
   grid-template-columns: 1fr 3fr;
-  gap: 3rem;
+  gap: 2rem;
   padding: 2rem;
 `;

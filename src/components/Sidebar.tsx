@@ -2,7 +2,7 @@ import React from "react";
 import { Droppable, Draggable } from "@hello-pangea/dnd";
 import styled from "@emotion/styled";
 
-function TaskInput({ setTaskList }) {
+function TaskInput({ setTaskList, handleColorByNature }) {
   const [task, setTask] = React.useState("");
   const [selectTaskNature, setSelectTaskNature] = React.useState("Work");
 
@@ -30,9 +30,34 @@ function TaskInput({ setTaskList }) {
       <Select
         value={selectTaskNature}
         onChange={(e) => setSelectTaskNature(e.target.value)}
+        style={{
+          backgroundColor: handleColorByNature(selectTaskNature),
+        }}
       >
-        <option value="Work">Work</option>
-        <option value="Personal">Personal</option>
+        <option
+          style={{ backgroundColor: "#1e40af", color: "#e2e8f0 " }}
+          value="Work"
+        >
+          Work
+        </option>
+        <option
+          style={{ backgroundColor: "#065f46", color: "#e2e8f0 " }}
+          value="Health"
+        >
+          Health
+        </option>
+        <option
+          style={{ backgroundColor: "#991b1b", color: "#e2e8f0 " }}
+          value="Food Break"
+        >
+          Food Break
+        </option>
+        <option
+          style={{ backgroundColor: "#6b21a8", color: "#e2e8f0 " }}
+          value="Entertainment"
+        >
+          Entertainment
+        </option>
       </Select>
     </InputForm>
   );
@@ -42,9 +67,13 @@ export default ({ taskList, setTaskList }) => {
   const handleColorByNature = (nature: string) => {
     switch (nature) {
       case "Work":
-        return "red";
-      case "Personal":
-        return "blue";
+        return "#1e40af";
+      case "Health":
+        return "#065f46";
+      case "Food Break":
+        return "#991b1b";
+      case "Entertainment":
+        return "#6b21a8";
       default:
         return "white";
     }
@@ -53,7 +82,10 @@ export default ({ taskList, setTaskList }) => {
   return (
     <Sidebar>
       <AsideTitle>All Tasks</AsideTitle>
-      <TaskInput setTaskList={setTaskList} />
+      <TaskInput
+        setTaskList={setTaskList}
+        handleColorByNature={handleColorByNature}
+      />
       <Droppable droppableId="taskList">
         {(provided) => (
           <List ref={provided.innerRef} {...provided.droppableProps}>
@@ -67,7 +99,10 @@ export default ({ taskList, setTaskList }) => {
                   >
                     <li
                       style={{
-                        color: `${handleColorByNature(task.selectTaskNature)}`,
+                        color: "#e2e8f0",
+                        backgroundColor: `${handleColorByNature(
+                          task.selectTaskNature
+                        )}`,
                       }}
                     >
                       {task.task}
@@ -93,29 +128,38 @@ export default ({ taskList, setTaskList }) => {
   );
 };
 
+// * ASIDE STYLES
+
 const Sidebar = styled.aside`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   padding: 1.5rem;
-  background-color: darkgray;
+  background-color: #06b6d4;
   border-radius: 1rem;
+  box-shadow: 0 0 0.5rem 0.1rem rgba(0, 0, 0, 0.2);
 `;
 
-// * ASIDE STYLES
-
 const AsideTitle = styled.h2`
+  color: white;
+  font-weight: bold;
+  text-shadow: 0.5rem 0 1rem rgba(0, 0, 0, 0.2);
+`;
+
+const Input = styled.input`
+  background-color: white;
   color: black;
   font-weight: bold;
-  &:hover {
-    color: white;
-  }
+  outline: none;
+  padding: 0.5rem;
+  border: none;
+  border-radius: 0.4rem 0 0 0.4rem;
 `;
 
 const Button = styled.button`
   border: none;
   border-left: 1px solid black;
-  background-color: beige;
+  background-color: #f59e0b;
   cursor: pointer;
   color: black;
   font-weight: bold;
@@ -125,29 +169,15 @@ const Button = styled.button`
 const TrashButton = styled.button`
   border: none;
   margin-left: 1rem;
-  background-color: beige;
+  background-color: transparent;
   cursor: pointer;
-  color: black;
+  color: #e2e8f0;
   font-weight: bold;
   font-size: 0.8rem;
 `;
 
-const Input = styled.input`
-  background-color: white;
-  color: black;
-  font-weight: bold;
-  outline: none;
-  padding: 0.1rem;
-  border: none;
-  border-radius: 0.4rem 0 0 0.4rem;
-
-  &:hover {
-  }
-`;
-
 const Select = styled.select`
-  background-color: white;
-  color: black;
+  color: #e2e8f0;
   font-weight: bold;
   outline: none;
   padding: 0.1rem;
@@ -155,6 +185,8 @@ const Select = styled.select`
   border: none;
   border-radius: 0.2rem;
   text-align: center;
+  box-shadow: 0 0 0.5rem 0 rgba(0, 0, 0, 0.2);
+  border: 1px solid #e2e8f0;
 `;
 
 const InputForm = styled.form`
@@ -180,5 +212,6 @@ const List = styled.div`
     padding: 0.5rem;
     background-color: #f5f5f5;
     border: 1px solid black;
+    font-weight: 600;
   }
 `;

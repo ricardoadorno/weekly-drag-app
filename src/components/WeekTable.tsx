@@ -13,7 +13,6 @@ export default function WeekTable({ daySlots, setDaySlots }) {
   ];
 
   const hours = [
-    "6:00",
     "7:00",
     "8:00",
     "9:00",
@@ -26,27 +25,24 @@ export default function WeekTable({ daySlots, setDaySlots }) {
     "16:00",
     "17:00",
     "18:00",
-    "19:00",
-    "20:00",
-    "21:00",
-    "22:00",
-    "23:00",
   ];
 
-  const handleColor = (color) => {
-    switch (color) {
+  const handleColorByNature = (nature: string) => {
+    switch (nature) {
       case "Work":
-        return "red";
-      case "Personal":
-        return "blue";
+        return "#1e40af";
+      case "Health":
+        return "#065f46";
+      case "Food Break":
+        return "#991b1b";
+      case "Entertainment":
+        return "#6b21a8";
       default:
-        return "gray";
+        return "white";
     }
   };
 
   const handleClearSlot = (slot) => {
-    console.log(slot);
-    console.log(daySlots);
     setDaySlots((prev) => {
       return prev.map((daySlot) => {
         if (daySlot.slot === slot) {
@@ -64,7 +60,7 @@ export default function WeekTable({ daySlots, setDaySlots }) {
       <Table>
         <thead>
           <tr>
-            <th>Time</th>
+            <th> </th>
 
             {daysOfTheWeek.map((day) => (
               <th key={day}>{day}</th>
@@ -87,7 +83,7 @@ export default function WeekTable({ daySlots, setDaySlots }) {
                                 onClick={() => handleClearSlot(daySlot.slot)}
                                 key={`${day}${hour}`}
                                 style={{
-                                  backgroundColor: `${handleColor(
+                                  backgroundColor: `${handleColorByNature(
                                     daySlot.color
                                   )}`,
                                 }}
@@ -114,6 +110,13 @@ export default function WeekTable({ daySlots, setDaySlots }) {
 
 // * TABLE STYLES
 
+const TableTitle = styled.h2`
+  color: #f9fafb;
+  font-weight: bold;
+  text-shadow: 0.5rem 1rem 1rem rgba(0, 0, 0, 0.2);
+  margin: 0.5rem;
+`;
+
 const Table = styled.table`
   background: lightgray;
   table-layout: fixed;
@@ -124,7 +127,7 @@ const Table = styled.table`
   padding: 1rem;
 
   thead {
-    background: #ff7361;
+    background: #f97316;
     text-align: center;
 
     th: {
@@ -133,8 +136,6 @@ const Table = styled.table`
 
     th:first-of-type {
       background-color: lightgray;
-      border: 1px solid black;
-      font-weight: normal;
     }
   }
 
@@ -145,9 +146,10 @@ const Table = styled.table`
 
     tr > td:first-of-type {
       border-bottom: 1px solid black;
+      text-align: center;
       cursor: text;
       &:hover {
-        background-color: #ff7361;
+        background-color: #f97316;
       }
     }
 
@@ -161,13 +163,13 @@ const Table = styled.table`
   }
 `;
 
-const TableTitle = styled.h2`
-  color: black;
-  font-weight: bold;
-`;
-
 const TableBox = styled.div`
   border: 1px solid black;
   text-align: center;
-  padding: 0 0.5rem;
+  color: white;
+  padding: 0 1rem;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
 `;
