@@ -1,0 +1,136 @@
+body {
+  background-color: #333;
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  color: #f5f5f5;
+  margin: 0;
+  padding: 0;
+}
+
+h2 {
+  text-align: center;
+}
+
+.header {
+  background-color: #222;
+  padding: 5px;
+  text-align: center;
+  color: #f5f5f5;
+}
+
+.container {
+  max-width: 85vw;
+  margin: 2rem auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+
+  > * {
+    border-radius: 1rem;
+    padding: 1.5rem;
+    box-shadow: 0 0 0.5rem 0.5rem rgba(0, 0, 0, 0.2);
+  }
+}
+
+.asideMenu {
+  flex-grow: 1;
+  background-color: #757575;
+
+  &__form {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    margin: 0.5rem;
+
+    &-input {
+      display: block;
+      width: 100%;
+      margin: 0.5rem 0;
+      padding: 0.5rem;
+      border-radius: 0.5rem;
+      border: none;
+      background-color: #fff;
+      outline: none;
+    }
+
+    &-button {
+      display: block;
+      width: 100%;
+      margin: 0.5rem 0;
+      padding: 0.5rem;
+      border-radius: 0.5rem;
+      border: none;
+      background-color: #a3a3a3;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #838383;
+      }
+    }
+
+    &-select {
+      grid-column: span 2;
+      display: block;
+      width: 100%;
+      margin: 0.5rem 0;
+      padding: 0.5rem;
+      border-radius: 0.5rem;
+      border: none;
+    }
+  }
+
+  &__list {
+    list-style: none;
+    padding: 0;
+    margin: 1rem;
+
+    &-item {
+      margin: 0.5rem 0;
+      padding: 0.5rem;
+      border-radius: 0.5rem;
+      text-indent: 1rem;
+      background-color: #555555;
+      display: flex;
+      justify-content: space-between;
+      cursor: grab;
+
+      .text {
+        color: #222;
+        display: inline-block;
+        width: 80%;
+      }
+
+      .delete {
+        margin-right: 1rem;
+        cursor: pointer;
+        color: red;
+      }
+    }
+  }
+}
+
+.weekDisplay {
+  flex-grow: 13;
+  background-color: #a3a3a3;
+  text-align: center;
+
+  &__table {
+    &-header {
+      background-color: #838383;
+      color: #f5f5f5;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    &-cell {
+      padding: 1rem;
+      background-color: #dddddd;
+      border: 1px solid #000000;
+      width: 14.28%;
+
+      &--time {
+        background-color: rgb(61, 61, 61);
+        border-bottom: 1px solid #ffffff;
+      }
+    }
+  }
+}
